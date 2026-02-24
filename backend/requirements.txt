@@ -9,5 +9,4 @@ python-jose[cryptography]
 passlib[bcrypt]
 python-dotenv
 alembic
-cors
 cryptography
