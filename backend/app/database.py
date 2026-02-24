@@ -8,6 +8,9 @@ load_dotenv()
 
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
 
+if not SQLALCHEMY_DATABASE_URL:
+    raise RuntimeError("DATABASE_URL environment variable is not set. Please set it in your deployment platform (Render/Vercel).")
+
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
