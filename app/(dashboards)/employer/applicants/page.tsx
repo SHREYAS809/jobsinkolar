@@ -69,7 +69,7 @@ export default function ApplicantsPage() {
                                     <td className="px-8 py-6">
                                         <div className="flex items-center gap-4">
                                             <div className="h-10 w-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 font-black text-xs border border-blue-200">
-                                                {applicant.name.split(' ').map(n => n[0]).join('')}
+                                                {(applicant.name?.split(' ') || []).filter(Boolean).map(n => n[0]).join('')}
                                             </div>
                                             <div>
                                                 <p className="font-black text-slate-900 text-sm group-hover:text-blue-600 transition-colors">{applicant.name}</p>

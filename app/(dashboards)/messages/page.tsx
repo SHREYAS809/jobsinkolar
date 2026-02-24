@@ -31,7 +31,7 @@ export default function MessagesPage() {
                         <div key={contact.id} className={`p-6 flex items-center gap-4 cursor-pointer transition-all border-l-4 ${contact.active ? "bg-blue-600/10 border-blue-500" : "border-transparent hover:bg-white/5"}`}>
                             <div className="relative">
                                 <div className="h-12 w-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 font-black text-xs">
-                                    {contact.name.split(' ').map(n => n[0]).join('')}
+                                    {(contact.name?.split(' ') || []).filter(Boolean).map(n => n[0]).join('')}
                                 </div>
                                 {contact.online && <div className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full bg-emerald-500 border-2 border-slate-900 shadow-lg"></div>}
                             </div>

@@ -24,8 +24,9 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
 
-  // Extract user type from pathname
-  const userType = (pathname.split("/")[1] as "employee" | "employer") || "employee";
+  // Extract user type from pathname and validate
+  const firstSegment = pathname?.split("/")?.[1];
+  const userType = (firstSegment === "employer" ? "employer" : "employee");
 
   // Get title
   const title =
