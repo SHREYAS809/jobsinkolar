@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Eye, EyeOff, ShieldAlert, Fingerprint } from "lucide-react";
+import { Eye, EyeOff, ShieldAlert, Fingerprint, Shield, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { loginUser } from "@/lib/api-client";
 
 export default function AdminLoginPage() {
     const router = useRouter();
@@ -11,18 +12,27 @@ export default function AdminLoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isAuthenticating, setIsAuthenticating] = useState(false);
+    const [error, setError] = useState("");
 
-    const handleLogin = (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsAuthenticating(true);
-        // Simulate login delay
-        setTimeout(() => {
-            if (email && password) {
+        setError("");
+
+        try {
+            const result = await loginUser({ email, password, role: "admin" });
+            if (result.access_token) {
+                localStorage.setItem("token", result.access_token);
+                localStorage.setItem("role", "admin");
                 router.push("/admin/dashboard");
             } else {
-                setIsAuthenticating(false);
+                setError(result.detail || "Access denied. System credentials invalid.");
             }
-        }, 800);
+        } catch (err) {
+            setError("Network failure. Could not connect to authentication server.");
+        } finally {
+            setIsAuthenticating(false);
+        }
     };
 
     return (
@@ -54,6 +64,13 @@ export default function AdminLoginPage() {
                         <h1 className="text-3xl font-black text-white tracking-tight mb-2">System Admin</h1>
                         <p className="text-slate-400 font-medium">Secure Portal Authentication</p>
                     </div>
+
+                    {error && (
+                        <div className="mb-8 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-xs font-bold flex items-center gap-3 animate-in fade-in slide-in-from-top-2">
+                            <AlertCircle size={16} />
+                            {error}
+                        </div>
+                    )}
 
                     <form onSubmit={handleLogin} className="space-y-6">
                         {/* Email Input group */}
@@ -119,10 +136,10 @@ export default function AdminLoginPage() {
                         </Button>
                     </form>
 
-                    {/* Demo Info */}
+                    {/* Security Info */}
                     <div className="mt-8 text-center border-t border-slate-800 pt-6">
-                        <p className="text-xs text-slate-500 font-medium">
-                            Demo Access: Any credentials permitted
+                        <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">
+                            Authorized Personnel Only
                         </p>
                     </div>
                 </div>

@@ -138,9 +138,9 @@ pnpm dev
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Login Credentials
-- **Email**: Any valid email
-- **Password**: Any password
-- **Role**: Choose from Admin, Employer, or Job Seeker
+- Users must register an account to access the dashboards.
+- Admin accounts must be created directly in the database for security.
+- Role-based access is strictly enforced.
 
 ## Features Highlights
 
@@ -177,7 +177,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Notes
 - All data is currently mocked and reset on page refresh
-- No authentication is performed (frontend only for demo)
+- Full authentication is performed against the TiDB Cloud backend
 - Design system uses Tailwind CSS v4 with custom theme
 - Charts use Recharts for data visualization
 - Icons provided by Lucide React
