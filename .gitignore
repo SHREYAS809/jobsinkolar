@@ -1,0 +1,23 @@
+# Next.js
+node_modules/
+.next/
+out/
+build/
+
+# Environment
+.env*.local
+.env
+
+# Debug
+*-debug.log*
+*.log
+
+# System
+.DS_Store
+.vercel
+
+# Backend specific (if not using nested git)
+backend/venv/
+backend/__pycache__/
+backend/*.py[cod]
+backend/.env
