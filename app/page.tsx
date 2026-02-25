@@ -16,24 +16,28 @@ export default function Home() {
       </div>
 
       {/* Navigation */}
-      <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 shadow-md">
-              <Briefcase className="h-4 w-4 text-white" />
+      <header className="sticky top-0 z-50 w-full border-b border-slate-200/50 bg-white/70 backdrop-blur-xl">
+        <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-8">
+          <div className="flex items-center gap-3 group cursor-pointer">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary shadow-lg shadow-primary/20 transition-transform group-hover:rotate-12">
+              <Briefcase className="h-5 w-5 text-white" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-slate-900">
-              JobsIn<span className="text-blue-600">Kolar</span>
+            <span className="text-2xl font-black tracking-tight text-slate-900">
+              Kolar<span className="text-primary italic">Jobs</span>
             </span>
           </div>
-          <nav className="hidden md:flex gap-8 items-center">
-            <Link href="#job-seekers" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Find Jobs</Link>
-            <Link href="/login" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Sign in</Link>
+          <nav className="hidden lg:flex gap-10 items-center">
+            <Link href="/jobs" className="text-sm font-bold text-slate-500 hover:text-primary transition-colors">Browse Jobs</Link>
+            <Link href="/employers" className="text-sm font-bold text-slate-500 hover:text-primary transition-colors">For Employers</Link>
+            <Link href="/about" className="text-sm font-bold text-slate-500 hover:text-primary transition-colors">Our Impact</Link>
           </nav>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
+            <Link href="/login" className="hidden md:block text-sm font-bold text-slate-900 hover:bg-slate-100 px-4 py-2 rounded-xl transition-all">
+              Sign in
+            </Link>
             <Link href="/register">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-6 font-bold text-sm h-10 shadow-sm transition-all">
-                Get Started
+              <Button className="bg-primary hover:bg-primary/90 text-white rounded-xl px-8 font-black text-sm h-12 shadow-lg shadow-primary/20 transition-all active:scale-95">
+                Join Network
               </Button>
             </Link>
           </div>
@@ -41,156 +45,258 @@ export default function Home() {
       </header>
 
       <main className="flex-1 relative z-10">
-        {/* Hero Section */}
-        <section className="bg-white border-b border-slate-200 pt-16 pb-20">
-          <div className="container mx-auto px-4 text-center max-w-4xl">
-            <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-6">
-              The district's most trusted <br />
-              <span className="text-blue-600">job portal is here.</span>
-            </h1>
-            <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Find your next career move in Kolar. Trusted by 2,000+ local companies and verified professionals.
-            </p>
-
-            {/* Indeed/Apna Style Search Bar */}
-            <div className="bg-white p-2 rounded-2xl shadow-xl border border-slate-200 max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-2">
-              <div className="flex-1 w-full relative flex items-center">
-                <Search className="absolute left-4 text-slate-400" size={20} />
-                <input
-                  type="text"
-                  placeholder="Job title, keywords, or company"
-                  className="w-full pl-12 pr-4 py-4 text-slate-900 focus:outline-none text-base rounded-xl bg-transparent"
-                />
-              </div>
-              <div className="w-px h-8 bg-slate-200 hidden md:block" />
-              <div className="flex-1 w-full relative flex items-center">
-                <MapPin className="absolute left-4 text-slate-400" size={20} />
-                <input
-                  type="text"
-                  placeholder="Kolar, Karnataka"
-                  className="w-full pl-12 pr-4 py-4 text-slate-900 focus:outline-none text-base rounded-xl bg-transparent"
-                />
-              </div>
-              <Button className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 h-14 px-8 rounded-xl font-bold text-base">
-                Search Jobs
-              </Button>
-            </div>
-
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500 font-medium">
-              <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> 100% Free for Seekers</span>
-              <span className="flex items-center gap-1.5"><Zap className="h-4 w-4 text-blue-500" /> Direct HR Contact</span>
-              <span className="flex items-center gap-1.5"><Briefcase className="h-4 w-4 text-amber-500" /> Verified Listings</span>
-            </div>
-          </div>
-        </section>
-
-        {/* Popular Categories */}
-        <section className="py-20 container mx-auto px-4">
-          <div className="flex items-center justify-between mb-10">
-            <h2 className="text-2xl font-bold text-slate-900">Featured Categories</h2>
-            <Link href="#" className="text-blue-600 font-bold text-sm hover:underline">View all</Link>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {[
-              { name: "IT & Software", count: "450+", icon: <Zap /> },
-              { name: "Healthcare", count: "120+", icon: <Briefcase /> },
-              { name: "Education", count: "85+", icon: <FileText /> },
-              { name: "Logistics", count: "210+", icon: <Building2 /> },
-              { name: "Manufacturing", count: "180+", icon: <Building2 /> },
-              { name: "Sales", count: "320+", icon: <Star /> },
-            ].map((cat, i) => (
-              <div key={i} className="bg-white p-6 rounded-xl border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer group">
-                <div className="text-blue-600 mb-4 group-hover:scale-110 transition-transform">{cat.icon}</div>
-                <h3 className="font-bold text-slate-900 mb-1">{cat.name}</h3>
-                <p className="text-sm text-slate-500">{cat.count} jobs</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Roles Section */}
-        <section className="bg-slate-100 py-24 px-4 md:px-8">
-          <div className="container mx-auto">
-            <div className="max-w-3xl mx-auto">
-
-              {/* Job Seeker Card */}
-              <div id="job-seekers" className="bg-white rounded-3xl p-10 border border-slate-200 shadow-sm hover:shadow-lg transition-all group">
-                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
-                  <User size={28} />
+        {/* Modern Hero Section */}
+        <section className="bg-white border-b border-slate-200 pt-20 pb-24 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="flex flex-col lg:flex-row items-center gap-12">
+              <div className="flex-1 text-center lg:text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent-foreground text-xs font-bold mb-6">
+                  <Sparkles size={14} className="animate-pulse" />
+                  Kolar's #1 Job Network
                 </div>
-                <h3 className="mb-4 text-2xl font-bold text-slate-900">For Job Seekers</h3>
-                <p className="mb-8 text-slate-600 leading-relaxed">
-                  Upload your resume and let companies come to you. Direct connection with employers in Kolar District.
+                <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.05] mb-6">
+                  Your next <span className="text-primary italic">dream role</span> <br />
+                  awaits in Kolar.
+                </h1>
+                <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl lg:mx-0 mx-auto leading-relaxed">
+                  Join 10,000+ professionals connecting with the best local companies.
+                  Vetted employers, verified roles, 100% free for you.
                 </p>
-                <ul className="space-y-3 mb-10">
-                  {["Easy one-tap apply", "Direct WhatsApp HR chat", "Verified job listings", "Free career resources"].map((text, i) => (
-                    <li key={i} className="flex items-center gap-3 text-slate-700 font-medium text-sm">
-                      <CheckCircle2 className="h-4 w-4 text-emerald-500" /> {text}
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/register" className="block w-full">
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white h-14 text-sm font-bold rounded-xl transition-all">
-                    Get Started Now
+
+                {/* Indeed Style Unified Search */}
+                <div className="bg-white p-2 rounded-2xl shadow-2xl border border-slate-200 max-w-3xl flex flex-col md:flex-row items-center gap-2 group focus-within:ring-4 focus-within:ring-primary/10 transition-all">
+                  <div className="flex-1 w-full relative flex items-center">
+                    <Search className="absolute left-4 text-slate-400 group-focus-within:text-primary transition-colors" size={20} />
+                    <input
+                      type="text"
+                      placeholder="Job title, keywords, or company"
+                      className="w-full pl-12 pr-4 py-4 text-slate-900 focus:outline-none text-base rounded-xl bg-transparent font-medium"
+                    />
+                  </div>
+                  <div className="w-px h-10 bg-slate-200 hidden md:block" />
+                  <div className="flex-1 w-full relative flex items-center">
+                    <MapPin className="absolute left-4 text-slate-400 group-focus-within:text-primary transition-colors" size={20} />
+                    <input
+                      type="text"
+                      placeholder="Kolar, Karnataka"
+                      className="w-full pl-12 pr-4 py-4 text-slate-900 focus:outline-none text-base rounded-xl bg-transparent font-medium"
+                    />
+                  </div>
+                  <Button className="w-full md:w-auto bg-primary hover:bg-primary/90 h-14 px-10 rounded-xl font-bold text-base shadow-lg shadow-primary/25 transition-all active:scale-95">
+                    Search Jobs
                   </Button>
-                </Link>
+                </div>
+
+                <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-8 text-sm text-slate-500 font-bold uppercase tracking-wider">
+                  <span className="flex items-center gap-2 group cursor-default text-slate-400 hover:text-emerald-600 transition-colors">
+                    <div className="h-5 w-5 rounded-full bg-emerald-50 flex items-center justify-center border border-emerald-100 italic">✓</div>
+                    Verified Employers
+                  </span>
+                  <span className="flex items-center gap-2 group cursor-default text-slate-400 hover:text-blue-600 transition-colors">
+                    <div className="h-5 w-5 rounded-full bg-blue-50 flex items-center justify-center border border-blue-100 font-serif">i</div>
+                    Direct Contact
+                  </span>
+                  <span className="flex items-center gap-2 group cursor-default text-slate-400 hover:text-purple-600 transition-colors">
+                    <div className="h-5 w-5 rounded-full bg-purple-50 flex items-center justify-center border border-purple-100">★</div>
+                    100% Free
+                  </span>
+                </div>
               </div>
 
+              {/* Optional: Hero Illustration/Image Placeholder Block */}
+              <div className="hidden lg:block flex-1 relative">
+                <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-8 border-white group">
+                  <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500" />
+                  <img
+                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1000"
+                    alt="Professional at work"
+                    className="w-full h-[500px] object-crop transform group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+                {/* Decorative Blobs */}
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent/20 rounded-full blur-3xl animate-blob" />
+                <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-primary/20 rounded-full blur-3xl animate-blob animation-delay-2000" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Latest Job Openings - HerJobs Style */}
+        <section className="py-24 bg-slate-50">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">Latest <span className="text-primary italic border-b-4 border-accent/30">Job Openings</span></h2>
+                <p className="text-slate-500 font-medium max-w-md">The most recent opportunities from our verified partner network across the district.</p>
+              </div>
+              <Link href="/jobs">
+                <Button variant="outline" className="rounded-xl font-bold px-8 hover:bg-slate-900 hover:text-white transition-all group">
+                  Explore All Jobs <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+                </Button>
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                { title: "Senior Software Engineer", company: "Kolar Tech Park", location: "Kolar City", type: "Full-time", salary: "₹50,000 - ₹80,000", posted: "2 hours ago", icon: <Zap className="text-amber-500" /> },
+                { title: "Operations Manager", company: "Blue Origin Logistics", location: "Nagarbhavi", type: "Full-time", salary: "₹45,000 - ₹60,000", posted: "5 hours ago", icon: <Building2 className="text-blue-500" /> },
+                { title: "Customer Success Lead", company: "Swift Solutions", location: "KGF", type: "Remote", salary: "₹35,000 - ₹50,000", posted: "1 day ago", icon: <User className="text-purple-500" /> },
+                { title: "Marketing Executive", company: "Urban Market", location: "Malur", type: "Contract", salary: "₹25,000 - ₹40,000", posted: "2 days ago", icon: <Star className="text-emerald-500" /> },
+                { title: "Warehouse Supervisor", company: "Kolar Cold Storage", location: "Kolar Bypass", type: "Full-time", salary: "₹20,000 - ₹30,000", posted: "3 days ago", icon: <Briefcase className="text-slate-500" /> },
+                { title: "Primary School Teacher", company: "Green Valley Academy", location: "Mulbagal", type: "Part-time", salary: "₹15,000 - ₹25,000", posted: "3 days ago", icon: <FileText className="text-indigo-500" /> },
+              ].map((job, i) => (
+                <div key={i} className="group bg-white rounded-3xl p-8 border border-slate-200 hover:border-primary/20 hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-[100px] -mr-4 -mt-4 group-hover:bg-primary/10 transition-colors" />
+
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="h-14 w-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                      {job.icon}
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 bg-slate-100 px-3 py-1 rounded-full">
+                      {job.type}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors mb-2">{job.title}</h3>
+                  <div className="flex items-center gap-2 text-slate-500 text-sm font-medium mb-6">
+                    <Building2 size={14} /> {job.company} • <MapPin size={14} /> {job.location}
+                  </div>
+
+                  <div className="space-y-3 mb-8">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-slate-400 font-medium">Estimated Salary</span>
+                      <span className="text-slate-900 font-bold">{job.salary}</span>
+                    </div>
+                    <div className="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+                      <div className="h-full bg-accent w-2/3 rounded-full" />
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <Button className="flex-1 bg-slate-900 hover:bg-primary text-white font-bold h-12 rounded-xl transition-all">
+                      Quick Apply
+                    </Button>
+                    <Button variant="outline" className="h-12 w-12 rounded-xl border-slate-200 hover:border-primary group/btn">
+                      <Star size={18} className="group-hover/btn:fill-primary group-hover/btn:text-primary transition-all" />
+                    </Button>
+                  </div>
+
+                  <div className="mt-4 pt-4 border-t border-slate-50 text-[10px] text-slate-400 font-bold uppercase tracking-tighter">
+                    Last activity: {job.posted}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Dual CTA Section - For Employers & Seekers */}
+        <section className="py-24 container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="bg-primary rounded-[2.5rem] p-12 text-white relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32" />
+              <div className="relative z-10">
+                <h3 className="text-3xl font-black mb-6">Looking to Hire?</h3>
+                <p className="text-primary-foreground/80 text-lg mb-10 leading-relaxed">
+                  Post your jobs to Kolar's largest talent pool and find the perfect match in days, not weeks.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link href="/employer/register">
+                    <Button className="bg-white text-primary hover:bg-slate-100 h-14 px-8 rounded-2xl font-black transition-all">
+                      Post a Job Free
+                    </Button>
+                  </Link>
+                  <Link href="/employer">
+                    <Button variant="link" className="text-white hover:text-accent font-bold h-14">
+                      Employer Solutions <ArrowRight className="ml-2" size={18} />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white border-4 border-primary/5 rounded-[2.5rem] p-12 flex flex-col justify-center relative group hover:border-accent/20 transition-all">
+              <div className="mb-10 inline-flex h-20 w-20 items-center justify-center rounded-3xl bg-accent/10 text-accent-foreground">
+                <User size={36} className="group-hover:rotate-12 transition-transform" />
+              </div>
+              <h3 className="text-3xl font-black text-slate-900 mb-6 font-serif italic">Build your future.</h3>
+              <p className="text-slate-600 text-lg mb-10 leading-relaxed">
+                Create a professional profile and let the best companies in the district come to you.
+              </p>
+              <Link href="/register">
+                <Button className="w-fit bg-primary hover:bg-primary/90 h-14 px-12 rounded-2xl font-black shadow-lg shadow-primary/20 transition-all active:scale-95">
+                  Get Started <ArrowRight className="ml-2" />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 pt-20 pb-10 text-slate-600 relative z-10">
+      <footer className="bg-slate-900 pt-24 pb-12 text-slate-400 relative z-10 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary opacity-50" />
         <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-            <div className="md:col-span-2">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="h-6 w-6 rounded bg-blue-600 flex items-center justify-center text-white">
-                  <Briefcase size={14} />
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20">
+            <div className="md:col-span-5">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center text-white">
+                  <Briefcase size={16} />
                 </div>
-                <span className="text-xl font-bold tracking-tighter text-slate-900">JobsInKolar</span>
+                <span className="text-2xl font-black tracking-tight text-white italic">KolarJobs</span>
               </div>
-              <p className="text-slate-500 text-sm leading-relaxed max-w-sm mb-6">
-                The #1 destination for talent and jobs in Kolar District. Helping people get hired and companies grow.
+              <p className="text-slate-500 text-lg leading-relaxed max-w-sm mb-10">
+                Revolutionizing how talent meets opportunity in Kolar District.
+                Built for the community, driven by technology.
               </p>
               <div className="flex gap-4">
-                <Button variant="outline" size="icon-sm" className="rounded-full"><Star size={14} /></Button>
-                <Button variant="outline" size="icon-sm" className="rounded-full"><Building2 size={14} /></Button>
-                <Button variant="outline" size="icon-sm" className="rounded-full"><ArrowRight size={14} /></Button>
+                <Button variant="outline" size="icon" className="rounded-2xl border-slate-800 bg-slate-800/50 hover:bg-primary hover:border-primary transition-all"><Star size={18} className="text-white" /></Button>
+                <Button variant="outline" size="icon" className="rounded-2xl border-slate-800 bg-slate-800/50 hover:bg-primary hover:border-primary transition-all"><Building2 size={18} className="text-white" /></Button>
+                <Button variant="outline" size="icon" className="rounded-2xl border-slate-800 bg-slate-800/50 hover:bg-primary hover:border-primary transition-all"><ArrowRight size={18} className="text-white" /></Button>
               </div>
             </div>
 
-            <div>
-              <h4 className="text-slate-900 font-bold text-sm mb-6">For Job Seekers</h4>
-              <nav className="flex flex-col gap-3 text-sm">
-                <Link href="#" className="hover:text-blue-600 transition-colors">Browse Jobs</Link>
-                <Link href="#" className="hover:text-blue-600 transition-colors">Company Reviews</Link>
-                <Link href="#" className="hover:text-blue-600 transition-colors">Salaries</Link>
-                <Link href="#" className="hover:text-blue-600 transition-colors">Career Advice</Link>
+            <div className="md:col-span-2">
+              <h4 className="text-white font-black text-xs uppercase tracking-widest mb-8">Ecosystem</h4>
+              <nav className="flex flex-col gap-4 text-sm font-bold">
+                <Link href="#" className="hover:text-primary transition-colors">Find Work</Link>
+                <Link href="#" className="hover:text-primary transition-colors">Hire Talent</Link>
+                <Link href="#" className="hover:text-primary transition-colors">Skill Center</Link>
+                <Link href="#" className="hover:text-primary transition-colors">Success Stories</Link>
               </nav>
             </div>
 
-            <div>
-              <h4 className="text-slate-900 font-bold text-sm mb-6">Support</h4>
-              <nav className="flex flex-col gap-3 text-sm">
-                <Link href="#" className="hover:text-blue-600 transition-colors">Help Center</Link>
-                <Link href="#" className="hover:text-blue-600 transition-colors">Privacy Policy</Link>
-                <Link href="#" className="hover:text-blue-600 transition-colors">Terms of Service</Link>
-                <Link href="/admin" className="hover:text-blue-600 transition-colors">System Admin</Link>
+            <div className="md:col-span-2">
+              <h4 className="text-white font-black text-xs uppercase tracking-widest mb-8">Organization</h4>
+              <nav className="flex flex-col gap-4 text-sm font-bold">
+                <Link href="/about" className="hover:text-primary transition-colors">About Us</Link>
+                <Link href="#" className="hover:text-primary transition-colors">Contact</Link>
+                <Link href="#" className="hover:text-primary transition-colors">Partners</Link>
+                <Link href="/admin" className="hover:text-primary transition-colors">Staff Login</Link>
               </nav>
+            </div>
+
+            <div className="md:col-span-3">
+              <div className="bg-slate-800/50 rounded-3xl p-8 border border-slate-800">
+                <h4 className="text-white font-black text-sm mb-4">Official Updates</h4>
+                <p className="text-sm text-slate-500 mb-6 font-medium">Get notified about new government initiatives and local recruitment drives.</p>
+                <div className="flex gap-2">
+                  <input placeholder="Email" className="bg-slate-900 border-none rounded-xl px-4 py-2 text-sm w-full focus:ring-2 ring-primary transition-all" />
+                  <Button className="bg-primary hover:bg-primary/90 h-10 px-4 rounded-xl font-bold text-xs text-white">Join</Button>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-slate-100 text-xs text-slate-400">
+          <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-slate-800/50 text-[10px] text-slate-500 font-bold uppercase tracking-widest">
             <div>
-              © {new Date().getFullYear()} JobsInKolar District Initiative. All rights reserved.
+              © {new Date().getFullYear()} KolarJobs Initiative. Empowering local communities.
             </div>
-            <div className="flex gap-6 mt-4 md:mt-0">
-              <Link href="#" className="hover:text-slate-600">Privacy Center</Link>
-              <Link href="#" className="hover:text-slate-600">Accessibility</Link>
-              <Link href="#" className="hover:text-slate-600">Terms of Service</Link>
+            <div className="flex gap-10 mt-6 md:mt-0">
+              <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
+              <Link href="#" className="hover:text-white transition-colors">Legal</Link>
+              <Link href="#" className="hover:text-white transition-colors">Accessibility</Link>
             </div>
           </div>
         </div>
