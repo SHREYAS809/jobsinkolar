@@ -14,13 +14,8 @@ from contextlib import asynccontextmanager
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Create tables on startup
-    try:
-        models.Base.metadata.create_all(bind=database.engine)
-        print("Database tables verified/created.")
-    except Exception as e:
-        print(f"Database initialization error: {e}")
-        # We don't raise here to allow the app to start and return error JSON
+    # Skip blocking DB init on startup to prevent timeouts
+    print("API Starting up...")
     yield
 
 app = FastAPI(title="Jobs In Kolar API", lifespan=lifespan)
@@ -136,7 +131,7 @@ def env_check():
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to Jobs In Kolar API", "status": "online", "debug": "v5"}
+    return {"message": "Welcome to Jobs In Kolar API", "status": "online", "debug": "v6"}
 
 if __name__ == "__main__":
     uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
