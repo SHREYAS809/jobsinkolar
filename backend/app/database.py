@@ -33,7 +33,11 @@ Base = declarative_base()
 # Dependency to get DB session
 def get_db():
     if engine is None:
-        raise Exception("Database engine not initialized. Check DATABASE_URL environment variable.")
+        print("CRITICAL: Attempted to get DB session but engine is None.")
+        raise HTTPException(
+            status_code=503, 
+            detail="Database service unavailable. Check system logs."
+        )
     db = SessionLocal()
     try:
         yield db
