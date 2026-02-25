@@ -11,11 +11,18 @@ models.Base.metadata.create_all(bind=database.engine)
 
 app = FastAPI(title="Jobs In Kolar API")
 
-# Permissive CORS for maximum compatibility
+# Explicit CORS configuration for Vercel and local development
+origins = [
+    "http://localhost:3000",
+    "https://jobs-in-kolar.vercel.app",
+    "https://jobsinkolar.vercel.app",
+    "https://jobsinkolar-shreyas809.vercel.app", # Potential variant
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
+    allow_origins=origins,
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
