@@ -32,7 +32,16 @@ function RegisterContent() {
                     router.push(redirectPath);
                 }, 2000);
             } else {
-                setError(result.detail || "Registration failed. Please try again.");
+                const detail = result.detail;
+                if (typeof detail === "string") {
+                    setError(detail);
+                } else if (Array.isArray(detail)) {
+                    setError(detail[0]?.msg || "Validation error occurred.");
+                } else if (typeof detail === "object" && detail !== null) {
+                    setError(detail.msg || JSON.stringify(detail));
+                } else {
+                    setError("Registration failed. Please try again.");
+                }
             }
         } catch (err) {
             setError("Network error. Is the backend running?");

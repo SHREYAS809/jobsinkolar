@@ -40,7 +40,16 @@ function LoginContent() {
         const redirectPath = result.role === "employer" ? "/employer/dashboard" : `/${result.role}`;
         router.push(redirectPath);
       } else {
-        setError(result.detail || "Authentication failed. Please check your credentials.");
+        const detail = result.detail;
+        if (typeof detail === "string") {
+          setError(detail);
+        } else if (Array.isArray(detail)) {
+          setError(detail[0]?.msg || "Validation error occurred.");
+        } else if (typeof detail === "object" && detail !== null) {
+          setError(detail.msg || JSON.stringify(detail));
+        } else {
+          setError("Authentication failed. Please check your credentials.");
+        }
       }
     } catch (err) {
       setError("Network error. Is the backend running?");

@@ -27,7 +27,16 @@ export default function EmployerLoginPage() {
                 localStorage.setItem("role", "employer");
                 router.push("/employer/dashboard");
             } else {
-                setError(result.detail || "Authentication failed. Please check your employer credentials.");
+                const detail = result.detail;
+                if (typeof detail === "string") {
+                    setError(detail);
+                } else if (Array.isArray(detail)) {
+                    setError(detail[0]?.msg || "Validation error occurred.");
+                } else if (typeof detail === "object" && detail !== null) {
+                    setError(detail.msg || JSON.stringify(detail));
+                } else {
+                    setError("Authentication failed. Please check your employer credentials.");
+                }
             }
         } catch (err) {
             setError("Network error. Security protocol failed to establish connection.");
