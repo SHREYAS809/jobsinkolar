@@ -15,8 +15,12 @@ from contextlib import asynccontextmanager
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Skip blocking DB init on startup to prevent timeouts
-    print("API Starting up...")
+    print("INFO: API starting up...")
+    import os
+    print(f"INFO: Port: {os.getenv('PORT', '8000 (default)')}")
+    print(f"INFO: Database URL configured: {bool(os.getenv('DATABASE_URL'))}")
     yield
+    print("INFO: API shutting down...")
 
 app = FastAPI(title="Jobs In Kolar API", lifespan=lifespan)
 
