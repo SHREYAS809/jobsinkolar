@@ -24,24 +24,40 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Jobs In Kolar API", lifespan=lifespan)
 
-# Maximally permissive CORS for debugging and token-based auth
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+@app.middleware("http")
+async def force_cors_middleware(request: Request, call_next):
+    if request.method == "OPTIONS":
+        response = JSONResponse(content="OK")
+    else:
+        try:
+            response = await call_next(request)
+        except Exception as exc:
+            # Nuclear fallback for any crash
+            error_details = {
+                "detail": "Critical Server Error",
+                "error": str(exc),
+                "traceback": traceback.format_exc()
+            }
+            print(f"CRASH: {error_details}")
+            response = JSONResponse(status_code=500, content=error_details)
+    
+    # Force headers on EVERY response
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    return response
 
-# Global Exception Handler to expose errors for debugging
+# Global Exception Handler (redundancy)
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
     error_msg = f"Exception: {str(exc)}\n{traceback.format_exc()}"
     print(error_msg)
-    return JSONResponse(
+    response = JSONResponse(
         status_code=500,
         content={"detail": "Internal Server Error", "error": str(exc), "traceback": traceback.format_exc()}
     )
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    return response
 
 @app.post("/register", response_model=schemas.UserResponse)
 def register(user: schemas.UserCreate, db: Session = Depends(database.get_db)):
