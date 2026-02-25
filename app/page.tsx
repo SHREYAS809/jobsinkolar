@@ -27,9 +27,9 @@ export default function Home() {
             </span>
           </div>
           <nav className="hidden lg:flex gap-10 items-center">
-            <Link href="/jobs" className="text-sm font-bold text-slate-500 hover:text-primary transition-colors">Browse Jobs</Link>
-            <Link href="/employers" className="text-sm font-bold text-slate-500 hover:text-primary transition-colors">For Employers</Link>
-            <Link href="/about" className="text-sm font-bold text-slate-500 hover:text-primary transition-colors">Our Impact</Link>
+            <Link href="/employee" className="text-sm font-bold text-slate-500 hover:text-primary transition-colors">Browse Jobs</Link>
+            <Link href="/employer" className="text-sm font-bold text-slate-500 hover:text-primary transition-colors">For Employers</Link>
+            <Link href="/admin" className="text-sm font-bold text-slate-500 hover:text-primary transition-colors">Admin Portal</Link>
           </nav>
           <div className="flex items-center gap-4">
             <Link href="/login" className="hidden md:block text-sm font-bold text-slate-900 hover:bg-slate-100 px-4 py-2 rounded-xl transition-all">
@@ -130,7 +130,7 @@ export default function Home() {
                 <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">Latest <span className="text-primary italic border-b-4 border-accent/30">Job Openings</span></h2>
                 <p className="text-slate-500 font-medium max-w-md">The most recent opportunities from our verified partner network across the district.</p>
               </div>
-              <Link href="/jobs">
+              <Link href="/employee">
                 <Button variant="outline" className="rounded-xl font-bold px-8 hover:bg-slate-900 hover:text-white transition-all group">
                   Explore All Jobs <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
                 </Button>
@@ -202,7 +202,7 @@ export default function Home() {
                   Post your jobs to Kolar's largest talent pool and find the perfect match in days, not weeks.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href="/employer/register">
+                  <Link href="/register">
                     <Button className="bg-white text-primary hover:bg-slate-100 h-14 px-8 rounded-2xl font-black transition-all">
                       Post a Job Free
                     </Button>
@@ -270,9 +270,9 @@ export default function Home() {
             <div className="md:col-span-2">
               <h4 className="text-white font-black text-xs uppercase tracking-widest mb-8">Organization</h4>
               <nav className="flex flex-col gap-4 text-sm font-bold">
-                <Link href="/about" className="hover:text-primary transition-colors">About Us</Link>
-                <Link href="#" className="hover:text-primary transition-colors">Contact</Link>
-                <Link href="#" className="hover:text-primary transition-colors">Partners</Link>
+                <Link href="/register" className="hover:text-primary transition-colors">Join Us</Link>
+                <Link href="/login" className="hover:text-primary transition-colors">Contact</Link>
+                <Link href="/employer" className="hover:text-primary transition-colors">Partners</Link>
                 <Link href="/admin" className="hover:text-primary transition-colors">Staff Login</Link>
               </nav>
             </div>
