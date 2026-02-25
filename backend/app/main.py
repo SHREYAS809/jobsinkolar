@@ -3,10 +3,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List
 import uvicorn
+import logging
+import traceback
+from fastapi import Request
+from fastapi.responses import JSONResponse
 
+import os
 from . import models, schemas, crud, auth, database
 
 # Create tables (simple approach for initialization)
+# With pool_pre_ping to handle TiDB connection timeouts
+database.engine.pool_pre_ping = True
 models.Base.metadata.create_all(bind=database.engine)
 
 app = FastAPI(title="Jobs In Kolar API")
@@ -26,6 +33,16 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Global Exception Handler to expose errors for debugging
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    error_msg = f"Exception: {str(exc)}\n{traceback.format_exc()}"
+    print(error_msg)
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "Internal Server Error", "error": str(exc), "traceback": traceback.format_exc()}
+    )
 
 @app.post("/register", response_model=schemas.UserResponse)
 def register(user: schemas.UserCreate, db: Session = Depends(database.get_db)):
