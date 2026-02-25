@@ -8,6 +8,7 @@ import traceback
 from fastapi import Request
 from fastapi.responses import JSONResponse
 
+from sqlalchemy import text
 from . import models, schemas, crud, auth, database
 from contextlib import asynccontextmanager
 
@@ -114,7 +115,7 @@ def seed_data(db: Session = Depends(database.get_db)):
 def health_check(db: Session = Depends(database.get_db)):
     try:
         # Check DB connection
-        db.execute("SELECT 1")
+        db.execute(text("SELECT 1"))
         return {"status": "healthy", "database": "connected"}
     except Exception as e:
         return JSONResponse(
