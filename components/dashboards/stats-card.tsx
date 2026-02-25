@@ -18,17 +18,17 @@ export function StatsCard({ title, value, icon, trend }: StatsCardProps) {
 
       <div className="flex items-start justify-between relative z-10">
         <div>
-          <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">{title}</p>
+          <p className="text-[10px] font-black text-slate-950 uppercase tracking-widest mb-1">{title}</p>
           <p className="text-3xl font-black text-slate-950 tracking-tight">{value}</p>
           {trend && (
             <p
-              className={`text-xs font-bold mt-2 flex items-center gap-1 ${trend.direction === "up" ? "text-emerald-600" : "text-rose-600"
+              className={`text-xs font-black mt-2 flex items-center gap-1 ${trend.direction === "up" ? "text-emerald-700" : "text-rose-700"
                 }`}
             >
               <span className="bg-slate-100 p-0.5 rounded shadow-sm border border-slate-200">
                 {trend.direction === "up" ? "↑" : "↓"}
               </span>
-              <span>{trend.percentage}% <span className="text-slate-500 font-medium">from last mo</span></span>
+              <span>{trend.percentage}% <span className="text-slate-800 font-black">from last mo</span></span>
             </p>
           )}
         </div>

@@ -74,7 +74,7 @@ export function SidebarNav({ userType }: SidebarNavProps) {
             JobsIn<span className="text-blue-600">Kolar</span>
           </span>
         </Link>
-        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1 opacity-70">
+        <p className="text-[10px] text-slate-950 font-black uppercase tracking-widest mt-1">
           {userType === "employee" ? "Job Seeker Portal" : "Employer Console"}
         </p>
       </div>
@@ -87,12 +87,12 @@ export function SidebarNav({ userType }: SidebarNavProps) {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 font-semibold text-sm group relative ${active
-                ? "bg-blue-50 text-blue-600 shadow-sm"
-                : "text-slate-500 hover:text-slate-900 hover:bg-slate-50"
+              className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 font-black text-sm group relative ${active
+                ? "bg-blue-100 text-blue-800 shadow-md border-2 border-blue-200"
+                : "text-slate-950 hover:text-black hover:bg-slate-50 border-2 border-transparent"
                 }`}
             >
-              <span className={`${active ? "text-blue-600" : "text-slate-400 group-hover:text-blue-600 transition-colors"}`}>
+              <span className={`${active ? "text-blue-800" : "text-slate-950 group-hover:text-blue-900 transition-colors"}`}>
                 {ICON_MAP[item.icon]}
               </span>
               <span className="relative z-10">{item.label}</span>
@@ -102,10 +102,10 @@ export function SidebarNav({ userType }: SidebarNavProps) {
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t border-slate-100">
+      <div className="p-4 border-t-2 border-slate-200">
         <Link
           href="/login"
-          className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-slate-500 hover:text-rose-600 hover:bg-rose-50 transition-all font-semibold text-sm group"
+          className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-slate-950 hover:text-rose-800 hover:bg-rose-50 transition-all font-black text-sm group"
         >
           <LogOut size={18} className="group-hover:translate-x-1 transition-transform" />
           Logout Session

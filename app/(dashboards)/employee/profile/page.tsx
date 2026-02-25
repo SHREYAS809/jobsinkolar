@@ -25,12 +25,12 @@ export default function ProfilePage() {
 
                 <div className="relative z-10 flex-1">
                     <h2 className="text-3xl font-black text-white tracking-tight mb-2">John Doe</h2>
-                    <p className="text-slate-400 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
+                    <p className="text-white font-black text-xs uppercase tracking-widest flex items-center gap-2">
                         Verified Member • Kolar District Talent Pool
                     </p>
                     <div className="flex flex-wrap gap-3 mt-6">
-                        <span className="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-widest">UI/UX Engineer</span>
-                        <span className="px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[10px] font-black uppercase tracking-widest">Full-Stack Dev</span>
+                        <span className="px-4 py-1.5 rounded-full bg-blue-600 text-white border-2 border-blue-400 text-[10px] font-black uppercase tracking-widest shadow-lg">UI/UX Engineer</span>
+                        <span className="px-4 py-1.5 rounded-full bg-indigo-600 text-white border-2 border-indigo-400 text-[10px] font-black uppercase tracking-widest shadow-lg">Full-Stack Dev</span>
                     </div>
                 </div>
             </div>
@@ -41,26 +41,26 @@ export default function ProfilePage() {
 
                     <div className="space-y-6">
                         <div className="space-y-2">
-                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 ml-1">Full Designation</label>
+                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white ml-1 bg-white/10 px-2 py-0.5 rounded">Full Designation</label>
                             <div className="relative group">
-                                <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-blue-400 transition-colors" size={18} />
-                                <input type="text" defaultValue="John Doe" className="w-full bg-white/5 border border-white/10 rounded-2xl h-14 pl-12 pr-4 text-white font-bold placeholder:text-slate-600 focus:outline-none focus:border-blue-500/50 transition-all" />
+                                <User className="absolute left-4 top-1/2 -translate-y-1/2 text-white group-focus-within:text-blue-400 transition-colors" size={18} />
+                                <input type="text" defaultValue="John Doe" className="w-full bg-slate-900 border-2 border-white/20 rounded-2xl h-14 pl-12 pr-4 text-white font-black placeholder:text-slate-400 focus:outline-none focus:border-blue-500 transition-all shadow-inner" />
                             </div>
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 ml-1">Communication Channel</label>
+                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white ml-1 bg-white/10 px-2 py-0.5 rounded">Communication Channel</label>
                             <div className="relative group">
-                                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-blue-400 transition-colors" size={18} />
-                                <input type="email" defaultValue="john.doe@kolarnetwork.com" className="w-full bg-white/5 border border-white/10 rounded-2xl h-14 pl-12 pr-4 text-white font-bold focus:outline-none focus:border-blue-500/50 transition-all" />
+                                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-white group-focus-within:text-blue-400 transition-colors" size={18} />
+                                <input type="email" defaultValue="john.doe@kolarnetwork.com" className="w-full bg-slate-900 border-2 border-white/20 rounded-2xl h-14 pl-12 pr-4 text-white font-black focus:outline-none focus:border-blue-500 transition-all shadow-inner" />
                             </div>
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 ml-1">Direct Line</label>
+                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white ml-1 bg-white/10 px-2 py-0.5 rounded">Direct Line</label>
                             <div className="relative group">
-                                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-blue-400 transition-colors" size={18} />
-                                <input type="text" defaultValue="+91 98765 43210" className="w-full bg-white/5 border border-white/10 rounded-2xl h-14 pl-12 pr-4 text-white font-bold focus:outline-none focus:border-blue-500/50 transition-all" />
+                                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-white group-focus-within:text-blue-400 transition-colors" size={18} />
+                                <input type="text" defaultValue="+91 98765 43210" className="w-full bg-slate-900 border-2 border-white/20 rounded-2xl h-14 pl-12 pr-4 text-white font-black focus:outline-none focus:border-blue-500 transition-all shadow-inner" />
                             </div>
                         </div>
                     </div>
@@ -70,10 +70,10 @@ export default function ProfilePage() {
                     <div className="glass-panel p-10 rounded-[2.5rem] space-y-8">
                         <h3 className="text-sm font-black text-white uppercase tracking-[0.3em] mb-4">Strategic Location</h3>
                         <div className="space-y-2">
-                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 ml-1">Kolar Jurisdiction</label>
+                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white ml-1 bg-white/10 px-2 py-0.5 rounded">Kolar Jurisdiction</label>
                             <div className="relative group">
-                                <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-blue-400 transition-colors" size={18} />
-                                <input type="text" defaultValue="Bangarapet, Kolar District" className="w-full bg-white/5 border border-white/10 rounded-2xl h-14 pl-12 pr-4 text-white font-bold focus:outline-none focus:border-blue-500/50 transition-all" />
+                                <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-white group-focus-within:text-blue-400 transition-colors" size={18} />
+                                <input type="text" defaultValue="Bangarapet, Kolar District" className="w-full bg-slate-900 border-2 border-white/20 rounded-2xl h-14 pl-12 pr-4 text-white font-black focus:outline-none focus:border-blue-500 transition-all shadow-inner" />
                             </div>
                         </div>
                     </div>
@@ -88,10 +88,10 @@ export default function ProfilePage() {
                                 <p className="text-2xl font-black text-white">85%</p>
                             </div>
                         </div>
-                        <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden border border-white/10">
-                            <div className="h-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)] w-[85%]"></div>
+                        <div className="h-3 w-full bg-white/10 rounded-full overflow-hidden border border-white/20">
+                            <div className="h-full bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.9)] w-[85%]"></div>
                         </div>
-                        <p className="mt-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Optimization Complete • 15% pending</p>
+                        <p className="mt-4 text-[10px] font-black text-white uppercase tracking-widest bg-blue-600/20 px-3 py-1 rounded-lg border border-blue-500/30">Optimization Complete • 15% pending</p>
                     </div>
                 </div>
             </div>

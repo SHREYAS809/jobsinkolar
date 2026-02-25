@@ -15,13 +15,13 @@ export function ApplicantsPanel({ applicants }: ApplicantsPanelProps) {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "New":
-        return "bg-blue-50 text-blue-700 border-blue-200";
+        return "bg-blue-50 text-blue-800 border-blue-200 shadow-sm";
       case "Reviewed":
-        return "bg-amber-50 text-amber-700 border-amber-200";
+        return "bg-amber-50 text-amber-800 border-amber-200 shadow-sm";
       case "Interviewed":
-        return "bg-indigo-50 text-indigo-700 border-indigo-200";
+        return "bg-indigo-50 text-indigo-800 border-indigo-200 shadow-sm";
       default:
-        return "bg-slate-50 text-slate-700 border-slate-200";
+        return "bg-slate-50 text-slate-800 border-slate-200 shadow-sm";
     }
   };
 
@@ -37,8 +37,8 @@ export function ApplicantsPanel({ applicants }: ApplicantsPanelProps) {
             className="p-4 hover:bg-slate-50 transition-all flex items-center justify-between group"
           >
             <div className="flex-1">
-              <p className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{applicant.name}</p>
-              <p className="text-xs text-slate-600 font-medium">{applicant.appliedFor}</p>
+              <p className="font-bold text-slate-950 group-hover:text-blue-600 transition-colors">{applicant.name}</p>
+              <p className="text-xs text-slate-800 font-bold tracking-tight">{applicant.appliedFor}</p>
             </div>
             <div className="flex items-center gap-3">
               <span
@@ -46,7 +46,7 @@ export function ApplicantsPanel({ applicants }: ApplicantsPanelProps) {
               >
                 {applicant.status}
               </span>
-              <button className="p-1.5 hover:bg-blue-50 rounded-lg transition-all border border-transparent hover:border-blue-100 text-slate-400 hover:text-blue-600">
+              <button className="p-1.5 hover:bg-blue-50 rounded-lg transition-all border border-transparent hover:border-blue-100 text-slate-600 hover:text-blue-600">
                 <ChevronRight size={18} />
               </button>
             </div>

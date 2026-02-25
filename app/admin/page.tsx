@@ -61,8 +61,8 @@ export default function AdminLoginPage() {
                             <div className="absolute inset-0 bg-blue-500/20 rounded-2xl blur-lg group-hover:bg-blue-400/30 transition-colors"></div>
                             <ShieldAlert className="h-10 w-10 text-blue-500 relative z-10" />
                         </div>
-                        <h1 className="text-3xl font-black text-white tracking-tight mb-2">System Admin</h1>
-                        <p className="text-slate-400 font-medium">Secure Portal Authentication</p>
+                        <h1 className="text-4xl font-black text-white tracking-tight mb-2">System Admin</h1>
+                        <p className="text-white font-black uppercase tracking-[0.2em] text-[10px] bg-white/10 py-1 rounded-lg border border-white/20">Secure Portal Authentication</p>
                     </div>
 
                     {error && (
@@ -75,7 +75,7 @@ export default function AdminLoginPage() {
                     <form onSubmit={handleLogin} className="space-y-6">
                         {/* Email Input group */}
                         <div className="space-y-2 relative">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">
+                            <label className="text-xs font-black text-white uppercase tracking-wider ml-1">
                                 Admin ID
                             </label>
                             <div className="relative">
@@ -85,14 +85,14 @@ export default function AdminLoginPage() {
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="admin.terminal@system"
                                     required
-                                    className="w-full pl-5 pr-10 py-4 bg-slate-950/50 border border-slate-800 rounded-xl text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 placeholder:text-slate-600 transition-all text-sm font-medium"
+                                    className="w-full pl-5 pr-10 py-4 bg-slate-900 border-2 border-white/20 rounded-xl text-white focus:outline-none focus:border-blue-500 transition-all text-sm font-black placeholder:text-slate-500 shadow-inner"
                                 />
                             </div>
                         </div>
 
                         {/* Password Input group */}
                         <div className="space-y-2">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">
+                            <label className="text-xs font-black text-white uppercase tracking-wider ml-1">
                                 Passphrase
                             </label>
                             <div className="relative group">
@@ -102,12 +102,12 @@ export default function AdminLoginPage() {
                                     onChange={(e) => setPassword(e.target.value)}
                                     placeholder="••••••••••••"
                                     required
-                                    className="w-full pl-5 pr-12 py-4 bg-slate-950/50 border border-slate-800 rounded-xl text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 placeholder:text-slate-600 mb-1 transition-all font-mono text-sm tracking-widest"
+                                    className="w-full pl-5 pr-12 py-4 bg-slate-900 border-2 border-white/20 rounded-xl text-white focus:outline-none focus:border-blue-500 transition-all font-mono text-sm tracking-widest font-black placeholder:text-slate-500 shadow-inner"
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-500 hover:text-white transition-colors p-1"
+                                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-blue-400 transition-colors p-1"
                                 >
                                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                                 </button>
@@ -118,7 +118,7 @@ export default function AdminLoginPage() {
                         <Button
                             type="submit"
                             disabled={isAuthenticating}
-                            className="relative w-full overflow-hidden bg-blue-600 hover:bg-blue-500 text-white font-bold h-14 rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] mt-4 disabled:opacity-80"
+                            className="relative w-full overflow-hidden bg-blue-600 hover:bg-blue-500 text-white font-black h-16 rounded-xl transition-all shadow-2xl shadow-blue-500/40 mt-4 border-2 border-blue-400"
                         >
                             <span className="relative z-10 flex items-center justify-center gap-2 text-base tracking-wide">
                                 {isAuthenticating ? (
@@ -137,8 +137,8 @@ export default function AdminLoginPage() {
                     </form>
 
                     {/* Security Info */}
-                    <div className="mt-8 text-center border-t border-slate-800 pt-6">
-                        <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">
+                    <div className="mt-8 text-center border-t-2 border-white/10 pt-6">
+                        <p className="text-[10px] text-white font-black uppercase tracking-widest bg-white/5 py-1 px-3 rounded-lg border border-white/10 inline-block">
                             Authorized Personnel Only
                         </p>
                     </div>

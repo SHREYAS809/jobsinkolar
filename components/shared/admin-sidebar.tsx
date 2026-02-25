@@ -30,18 +30,18 @@ export function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 bg-white border-r border-slate-200 flex flex-col relative z-20">
+    <aside className="w-64 bg-white border-r-2 border-slate-200 flex flex-col relative z-20">
       {/* Logo */}
       <div className="p-6 border-b border-slate-100">
         <div className="flex items-center gap-2 mb-1">
-          <div className="h-6 w-6 rounded bg-blue-600 flex items-center justify-center text-white">
-            <Briefcase size={12} />
+          <div className="h-7 w-7 rounded bg-blue-600 flex items-center justify-center text-white border-2 border-blue-400">
+            <Briefcase size={14} />
           </div>
-          <span className="text-lg font-bold tracking-tight text-slate-900">
-            JobsIn<span className="text-blue-600">Kolar</span>
+          <span className="text-xl font-black tracking-tighter text-slate-950">
+            JobsIn<span className="text-blue-700">Kolar</span>
           </span>
         </div>
-        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest opacity-70">
+        <p className="text-[10px] text-white font-black uppercase tracking-widest mt-2 bg-slate-950 px-2 py-1 rounded inline-block">
           Admin Control Center
         </p>
       </div>
@@ -56,12 +56,12 @@ export function AdminSidebar() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 font-semibold text-sm group relative ${isActive
-                ? "bg-blue-50 text-blue-600 shadow-sm"
-                : "text-slate-500 hover:text-slate-900 hover:bg-slate-50"
+              className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 font-black text-sm group relative ${isActive
+                ? "bg-blue-100 text-blue-800 shadow-md border-2 border-blue-200"
+                : "text-slate-950 hover:text-black hover:bg-slate-50 border-2 border-transparent"
                 }`}
             >
-              <IconComponent size={18} className={`${isActive ? "text-blue-600" : "text-slate-400 group-hover:text-blue-600 transition-colors"}`} />
+              <IconComponent size={18} className={`${isActive ? "text-blue-800" : "text-slate-950 group-hover:text-blue-900 transition-colors"}`} />
               <span className="relative z-10">{item.label}</span>
             </Link>
           );
@@ -69,8 +69,8 @@ export function AdminSidebar() {
       </nav>
 
       {/* Logout */}
-      <div className="p-4 border-t border-slate-100">
-        <button className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-slate-500 hover:text-rose-600 hover:bg-rose-50 transition-all font-semibold text-sm group">
+      <div className="p-4 border-t-2 border-slate-200">
+        <button className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-slate-950 hover:text-rose-700 hover:bg-rose-50 transition-all font-black text-sm group border-2 border-transparent hover:border-rose-200">
           <LogOut size={18} className="group-hover:translate-x-1 transition-transform" />
           Logout Session
         </button>

@@ -30,12 +30,12 @@ export default function SavedJobsPage() {
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white/5 backdrop-blur-xl p-8 rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden group">
                 <div className="absolute -left-10 -top-10 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl group-hover:bg-blue-600/20 transition-all duration-700"></div>
                 <div className="relative z-10">
-                    <h2 className="text-2xl font-black text-white tracking-tight leading-tight">
+                    <h2 className="text-3xl font-black text-white tracking-tight leading-tight">
                         Saved Opportunities
                     </h2>
-                    <p className="text-slate-400 font-bold text-xs uppercase tracking-widest mt-2 flex items-center gap-2">
+                    <p className="text-white font-black text-xs uppercase tracking-widest mt-2 flex items-center gap-2">
                         <Bookmark size={14} className="text-blue-400" />
-                        {SAVED_JOBS.length} Bookmarked vacanies
+                        {SAVED_JOBS.length} Bookmarked vacancies
                     </p>
                 </div>
             </div>
@@ -56,26 +56,26 @@ export default function SavedJobsPage() {
                             {job.title}
                         </h3>
 
-                        <div className="flex items-center gap-2 text-slate-400 font-bold text-sm mb-6">
-                            <Building2 size={16} className="text-indigo-400" />
+                        <div className="flex items-center gap-2 text-white font-black text-sm mb-6">
+                            <Building2 size={16} className="text-blue-400" />
                             {job.company}
                         </div>
 
                         <div className="grid grid-cols-2 gap-4 mb-8">
-                            <div className="bg-white/5 p-3 rounded-2xl border border-white/5 flex items-center gap-3">
+                            <div className="bg-white/10 p-3 rounded-2xl border-2 border-white/20 flex items-center gap-3">
                                 <MapPin size={16} className="text-rose-500" />
-                                <span className="text-[10px] font-black uppercase tracking-widest text-slate-300">{job.location}</span>
+                                <span className="text-[10px] font-black uppercase tracking-widest text-white">{job.location}</span>
                             </div>
-                            <div className="bg-white/5 p-3 rounded-2xl border border-white/5 flex items-center gap-3">
+                            <div className="bg-white/10 p-3 rounded-2xl border-2 border-white/20 flex items-center gap-3">
                                 <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">{job.salary}</span>
                             </div>
                         </div>
 
                         <div className="flex items-center justify-between">
-                            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
+                            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white bg-white/10 px-3 py-1 rounded-lg border border-white/10">
                                 Saved {job.savedAt}
                             </span>
-                            <Button className="bg-white/5 hover:bg-white/10 text-white font-black uppercase tracking-widest text-[10px] h-10 px-6 rounded-xl border border-white/10 flex items-center gap-2">
+                            <Button className="bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest text-[10px] h-10 px-6 rounded-xl border-2 border-blue-400 flex items-center gap-2 shadow-lg shadow-blue-500/20">
                                 Apply Now <ExternalLink size={14} />
                             </Button>
                         </div>

@@ -59,10 +59,10 @@ export default function EmployeeDashboard() {
         </div>
         <input
           type="text"
-          placeholder="Explore career opportunities..."
+          placeholder="Explore career opportunities in Kolar..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-14 pr-6 py-4 bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 text-white placeholder-slate-500 shadow-2xl transition-all font-medium"
+          className="w-full pl-14 pr-6 py-4 bg-slate-900/80 backdrop-blur-2xl border border-white/20 rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 text-white placeholder-slate-200 shadow-2xl transition-all font-black text-lg"
         />
       </div>
 
@@ -72,9 +72,9 @@ export default function EmployeeDashboard() {
           <button
             key={filter.id}
             onClick={() => toggleFilter(filter.id)}
-            className={`px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-widest transition-all duration-300 border ${selectedFilters.includes(filter.id)
-                ? "bg-blue-600/20 text-blue-400 border-blue-500/40 shadow-[0_0_20px_rgba(37,99,235,0.2)]"
-                : "bg-white/5 text-slate-400 border-white/10 hover:bg-white/10 hover:text-white"
+            className={`px-6 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all duration-300 border ${selectedFilters.includes(filter.id)
+              ? "bg-blue-600 text-white border-blue-500 shadow-[0_0_20px_rgba(37,99,235,0.4)]"
+              : "bg-white/10 text-white border-white/30 hover:bg-white/20 hover:scale-105"
               }`}
           >
             {filter.label}
@@ -147,9 +147,12 @@ export default function EmployeeDashboard() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 glass-card rounded-3xl border border-dashed border-white/10">
-            <p className="text-slate-500 text-sm font-bold uppercase tracking-widest">
+          <div className="text-center py-24 glass-card rounded-[3rem] border-4 border-dashed border-white/20 bg-slate-900/40">
+            <p className="text-white text-lg font-black uppercase tracking-[0.2em] animate-pulse">
               No matching records found in system
+            </p>
+            <p className="text-slate-300 font-bold mt-2 uppercase tracking-widest text-[10px]">
+              Try adjusting your recruitment filters
             </p>
           </div>
         )}
