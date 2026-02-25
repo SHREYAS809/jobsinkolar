@@ -24,40 +24,29 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Jobs In Kolar API", lifespan=lifespan)
 
-@app.middleware("http")
-async def force_cors_middleware(request: Request, call_next):
-    if request.method == "OPTIONS":
-        response = JSONResponse(content="OK")
-    else:
-        try:
-            response = await call_next(request)
-        except Exception as exc:
-            # Nuclear fallback for any crash
-            error_details = {
-                "detail": "Critical Server Error",
-                "error": str(exc),
-                "traceback": traceback.format_exc()
-            }
-            print(f"CRASH: {error_details}")
-            response = JSONResponse(status_code=500, content=error_details)
-    
-    # Force headers on EVERY response
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    response.headers["Access-Control-Allow-Methods"] = "*"
-    response.headers["Access-Control-Allow-Headers"] = "*"
-    return response
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-# Global Exception Handler (redundancy)
+# Global Exception Handler to expose errors for debugging
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
     error_msg = f"Exception: {str(exc)}\n{traceback.format_exc()}"
     print(error_msg)
-    response = JSONResponse(
+    # We explicitly return CORS headers even in error responses
+    return JSONResponse(
         status_code=500,
-        content={"detail": "Internal Server Error", "error": str(exc), "traceback": traceback.format_exc()}
+        content={"detail": "Internal Server Error", "error": str(exc), "traceback": traceback.format_exc()},
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "*",
+            "Access-Control-Allow-Headers": "*",
+        }
     )
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    return response
 
 @app.post("/register", response_model=schemas.UserResponse)
 def register(user: schemas.UserCreate, db: Session = Depends(database.get_db)):
@@ -121,9 +110,32 @@ def seed_data(db: Session = Depends(database.get_db)):
     
     return {"message": "Seed data created successfully"}
 
+@app.get("/health")
+def health_check(db: Session = Depends(database.get_db)):
+    try:
+        # Check DB connection
+        db.execute("SELECT 1")
+        return {"status": "healthy", "database": "connected"}
+    except Exception as e:
+        return JSONResponse(
+            status_code=503,
+            content={"status": "unhealthy", "database": "error", "detail": str(e)}
+        )
+
+@app.get("/env-check")
+def env_check():
+    import os
+    # Only show safe variables
+    return {
+        "DATABASE_URL_SET": bool(os.getenv("DATABASE_URL")),
+        "PORT": os.getenv("PORT"),
+        "RENDER_SERVICE_NAME": os.getenv("RENDER_SERVICE_NAME"),
+        "DATABASE_URL_START": os.getenv("DATABASE_URL", "")[:15] + "..." if os.getenv("DATABASE_URL") else None
+    }
+
 @app.get("/")
 async def root():
-    return {"message": "Welcome to Jobs In Kolar API", "status": "online"}
+    return {"message": "Welcome to Jobs In Kolar API", "status": "online", "debug": "v3"}
 
 if __name__ == "__main__":
     uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
