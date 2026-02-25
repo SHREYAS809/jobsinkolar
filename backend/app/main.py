@@ -74,6 +74,25 @@ def read_jobs(skip: int = 0, limit: int = 100, db: Session = Depends(database.ge
     jobs = crud.get_jobs(db, skip=skip, limit=limit)
     return jobs
 
+@app.post("/cleanup-database")
+def cleanup_database(db: Session = Depends(database.get_db)):
+    """
+    CRITICAL: Drops all tables and recreates them for a fresh start.
+    """
+    try:
+        from .database import engine, Base
+        # Important: Close all connections before dropping
+        db.close()
+        # Drop all tables
+        Base.metadata.drop_all(bind=engine)
+        # Recreate all tables
+        Base.metadata.create_all(bind=engine)
+        return {"message": "Database cleared and recreated successfully. Ready for fresh entries."}
+    except Exception as e:
+        error_msg = f"Cleanup failed: {str(e)}"
+        print(error_msg)
+        raise HTTPException(status_code=500, detail=error_msg)
+
 @app.post("/seed")
 def seed_data(db: Session = Depends(database.get_db)):
     # Create a test employer user

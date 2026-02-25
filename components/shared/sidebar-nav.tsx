@@ -40,7 +40,6 @@ const NAVIGATION_ITEMS = {
     { label: "Interviews", href: "/employee/interviews", icon: "LayoutDashboard" },
     { label: "Resume Builder", href: "/employee/resume", icon: "FileText" },
     { label: "Saved Jobs", href: "/employee/saved", icon: "Bookmark" },
-    { label: "Learning Hub", href: "/employee/learning", icon: "Plus" },
     { label: "Profile", href: "/employee/profile", icon: "User" },
   ],
   employer: [
