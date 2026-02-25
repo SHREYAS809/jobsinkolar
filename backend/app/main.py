@@ -1,35 +1,34 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, AsyncGenerator
 import uvicorn
 import logging
 import traceback
 from fastapi import Request
 from fastapi.responses import JSONResponse
 
-import os
 from . import models, schemas, crud, auth, database
+from contextlib import asynccontextmanager
 
-# Create tables (simple approach for initialization)
-# With pool_pre_ping to handle TiDB connection timeouts
-database.engine.pool_pre_ping = True
-models.Base.metadata.create_all(bind=database.engine)
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Create tables on startup
+    try:
+        models.Base.metadata.create_all(bind=database.engine)
+        print("Database tables verified/created.")
+    except Exception as e:
+        print(f"Database initialization error: {e}")
+        # We don't raise here to allow the app to start and return error JSON
+    yield
 
-app = FastAPI(title="Jobs In Kolar API")
+app = FastAPI(title="Jobs In Kolar API", lifespan=lifespan)
 
-# Explicit CORS configuration for Vercel and local development
-origins = [
-    "http://localhost:3000",
-    "https://jobs-in-kolar.vercel.app",
-    "https://jobsinkolar.vercel.app",
-    "https://jobsinkolar-shreyas809.vercel.app", # Potential variant
-]
-
+# Maximally permissive CORS for debugging and token-based auth
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
